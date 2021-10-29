@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe UserCode do
+RSpec.describe CodebreakerGem::Entities::UserCode do
   subject(:code) { described_class.new(secret_code, guess_code) }
 
   let(:secret_code) { [6, 5, 4, 3] }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Difficulty do
+RSpec.describe CodebreakerGem::Entities::Difficulty do
   subject(:difficulty) { described_class.new(level) }
 
   let(:level) { :easy }
@@ -9,11 +9,11 @@ RSpec.describe Difficulty do
   let(:hell_difficulty) { described_class.new(:hell) }
 
   it 'check difficulty attempts' do
-    expect(difficulty.attempts).to eq(Difficulty::DIFFICULTIES[level][:attempts])
+    expect(difficulty.attempts).to eq(CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level][:attempts])
   end
 
   it 'check difficulty hint' do
-    expect(difficulty.hints).to eq(Difficulty::DIFFICULTIES[level][:hints])
+    expect(difficulty.hints).to eq(CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level][:hints])
   end
 
   it 'is equal to another difficulty with same attempts and hints' do

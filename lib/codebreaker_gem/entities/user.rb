@@ -1,25 +1,27 @@
 # frozen_string_literal: true
 
 module CodebreakerGem
-  class User
-    include Validator
+  module Entities
+    class User
+      include Validator
 
-    attr_reader :name
+      attr_reader :name
 
-    STRING_MIN_LEGTH = 3
-    STRING_MAX_LENGTH = 20
+      STRING_MIN_LEGTH = 3
+      STRING_MAX_LENGTH = 20
 
-    def initialize(name)
-      @name = name
-      validate
-    end
+      def initialize(name)
+        @name = name
+        validate
+      end
 
-    private
+      private
 
-    def validate
-      validate_name_length(name, STRING_MIN_LEGTH, STRING_MAX_LENGTH)
-      validate_input_class(name, String)
-      validate_string_not_empty(name)
+      def validate
+        validate_name_length(name, STRING_MIN_LEGTH, STRING_MAX_LENGTH)
+        validate_input_class(name, String)
+        validate_string_not_empty(name)
+      end
     end
   end
 end

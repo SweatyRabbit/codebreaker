@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe User do
+RSpec.describe CodebreakerGem::Entities::User do
   subject(:user) { described_class.new(name) }
 
   let(:name) { 'Ivan' }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Game do
+RSpec.describe CodebreakerGem::Entities::Game do
   subject(:game) { described_class.new(name, level) }
 
   let(:name) { 'Ivan' }
@@ -13,11 +13,11 @@ RSpec.describe Game do
   it 'use attempt' do
     attempt = '1234'
     3.times { game.use_attempt(attempt) }
-    expect(game.user_attempts).not_to eq(Difficulty::DIFFICULTIES[level][:attempts])
+    expect(game.user_attempts).not_to eq(CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level][:attempts])
   end
 
   it 'return true if codes are match' do
-    guess = Guess.new('1234').parse_code
+    guess = CodebreakerGem::Entities::Guess.new('1234').parse_code
     game.instance_variable_set(:@secret_code, guess)
     game.instance_variable_set(:@guess, guess)
     expect(game.win?).to be_truthy
@@ -30,7 +30,7 @@ RSpec.describe Game do
 
   it 'use hint' do
     game.use_hint
-    expect(game.user_hints).not_to eq(Difficulty::DIFFICULTIES[level][:hints])
+    expect(game.user_hints).not_to eq(CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level][:hints])
   end
 
   it 'return true if statistic is valid' do

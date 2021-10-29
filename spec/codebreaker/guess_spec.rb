@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Guess do
+RSpec.describe CodebreakerGem::Entities::Guess do
   subject(:guess) { described_class.new(digit) }
 
   let(:digit) { '1234' }
