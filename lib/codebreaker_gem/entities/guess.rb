@@ -15,7 +15,7 @@ module CodebreakerGem
       end
 
       def parse_code
-        @digit.chars.map { |number| Integer(number) }
+        @digit.chars.map(&:to_i)
       end
 
       private

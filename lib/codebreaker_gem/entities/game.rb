@@ -15,7 +15,7 @@ module CodebreakerGem
       end
 
       def use_attempt(guess)
-        return if lose?
+        return if lose? || win?
 
         @user_attempts -= 1
         @guess = CodebreakerGem::Entities::Guess.new(guess).parse_code
@@ -38,9 +38,9 @@ module CodebreakerGem
 
       def current_statistic
         CodebreakerGem::Entities::Statistic.new(name: name,
-                                             difficulty: @level[:level],
-                                             attempts: @level[:attempts] - @user_attempts,
-                                             hints: @level[:hints] - @user_hints)
+                                                difficulty: @level[:level],
+                                                attempts: @level[:attempts] - @user_attempts,
+                                                hints: @level[:hints] - @user_hints)
       end
 
       def save_current_statistic
