@@ -31,7 +31,7 @@ module CodebreakerGem
         Dir.mkdir(STORAGE_DIRECTORY)
         storage = YAML::Store.new(path)
         storage.transaction do
-          data.each { |key, value| storage[key] = value }
+          standard_data.each { |key, value| storage[key] = value }
         end
         standard_data
       end
