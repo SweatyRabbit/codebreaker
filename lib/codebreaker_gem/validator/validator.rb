@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module CodebreakerGem
   module Validator
     def validate_guess_input_length(string, max_length, min_length)

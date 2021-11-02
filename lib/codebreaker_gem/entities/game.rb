@@ -6,7 +6,7 @@ module CodebreakerGem
       attr_reader :name, :level, :user_attempts, :user_hints, :secret_code, :guess
 
       def initialize(name, level)
-        @name = CodebreakerGem::Entities::User.new(name)
+        @name = CodebreakerGem::Entities::User.new(name.strip)
         @level = CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level]
         @user_attempts = CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level][:attempts]
         @user_hints = CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level][:hints]
@@ -15,7 +15,7 @@ module CodebreakerGem
       end
 
       def use_attempt(guess)
-        return if lose? || win?
+        return if lose?
 
         @user_attempts -= 1
         @guess = CodebreakerGem::Entities::Guess.new(guess).parse_code
@@ -49,7 +49,7 @@ module CodebreakerGem
         store.save
       end
 
-      def users_statistic
+      def self.users_statistic
         store = CodebreakerGem::Entities::CodebreakerGemStore.new
         store.data[:users_statistic].sort_by { |stats| [stats.difficulty, stats.attempts, stats.hints] }
       end
