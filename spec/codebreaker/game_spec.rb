@@ -4,7 +4,7 @@ RSpec.describe CodebreakerGem::Entities::Game do
   subject(:game) { described_class.new(name, level) }
 
   let(:name) { 'Ivan' }
-  let(:level) { :easy }
+  let(:level) { 'easy' }
 
   context 'success tests' do
     it 'return true if input is valid' do
@@ -14,7 +14,7 @@ RSpec.describe CodebreakerGem::Entities::Game do
     it 'use attempt' do
       attempt = '1234'
       game.use_attempt(attempt)
-      expect(game.user_attempts).to eq(CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level][:attempts] - 1)
+      expect(game.user_attempts).to eq(CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level.to_sym][:attempts] - 1)
     end
 
     it 'return true if codes are match' do
@@ -31,7 +31,7 @@ RSpec.describe CodebreakerGem::Entities::Game do
 
     it 'use hint' do
       game.use_hint
-      expect(game.user_hints).to eq(CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level][:hints] - 1)
+      expect(game.user_hints).to eq(CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level.to_sym][:hints] - 1)
     end
 
     it 'return true if statistic is valid' do
@@ -48,7 +48,7 @@ RSpec.describe CodebreakerGem::Entities::Game do
     end
 
     it 'return true if users stistic is sorted' do
-      expect(game.users_statistic).to be_truthy
+      expect(CodebreakerGem::Entities::Game.users_statistic).to be_truthy
     end
   end
 

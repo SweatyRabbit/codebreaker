@@ -7,9 +7,9 @@ module CodebreakerGem
 
       def initialize(name, level)
         @name = CodebreakerGem::Entities::User.new(name.strip)
-        @level = CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level]
-        @user_attempts = CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level][:attempts]
-        @user_hints = CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level][:hints]
+        @level = CodebreakerGem::Entities::Difficulty.new(level.to_sym)
+        @user_attempts = @level.attempts
+        @user_hints = @level.hints
         @secret_code = CodebreakerGem::Entities::SecretCode.new.generate_secret_code
         @hint_code = @secret_code.sample(@user_hints)
       end
@@ -38,9 +38,9 @@ module CodebreakerGem
 
       def current_statistic
         CodebreakerGem::Entities::Statistic.new(name: name,
-                                                difficulty: @level[:level],
-                                                attempts: @level[:attempts] - @user_attempts,
-                                                hints: @level[:hints] - @user_hints)
+                                                difficulty: @level,
+                                                attempts: @level.attempts - @user_attempts,
+                                                hints: @level.hints - @user_hints)
       end
 
       def save_current_statistic
