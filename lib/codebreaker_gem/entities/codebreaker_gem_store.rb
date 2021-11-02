@@ -28,7 +28,11 @@ module CodebreakerGem
       end
 
       def initialize_db
-        Dir.mkdir(File.join(STORAGE_DIRECTORY))
+        Dir.mkdir(STORAGE_DIRECTORY)
+        storage = YAML::Store.new(path)
+        storage.transaction do
+          data.each { |key, value| storage[key] = value }
+        end
         standard_data
       end
 
