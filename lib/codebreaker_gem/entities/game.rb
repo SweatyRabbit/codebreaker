@@ -7,7 +7,7 @@ module CodebreakerGem
 
       def initialize(name, level)
         @name = CodebreakerGem::Entities::User.new(name.strip)
-        @level = CodebreakerGem::Entities::Difficulty.new(level.to_sym)
+        @level = CodebreakerGem::Entities::Difficulty.new(level.downcase.to_sym)
         @user_attempts = @level.attempts
         @user_hints = @level.hints
         @secret_code = CodebreakerGem::Entities::SecretCode.new.generate_secret_code

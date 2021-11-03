@@ -3,7 +3,7 @@
 RSpec.describe CodebreakerGem::Entities::UserCode do
   subject(:code) { described_class.new(secret_code, guess_code) }
 
-  context 'test will pass if all match' do
+  describe '#test will pass if all match' do
     test_codes = [{ secret_code: [6, 5, 4, 3], guess_code: [5, 6, 4, 3], answer: '++--' },
                   { secret_code: [6, 5, 4, 3], guess_code: [6, 4, 1, 1], answer: '+-' },
                   { secret_code: [6, 5, 4, 3], guess_code: [6, 5, 4, 4], answer: '+++' },

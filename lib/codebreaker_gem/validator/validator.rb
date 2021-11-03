@@ -7,7 +7,7 @@ module CodebreakerGem
     end
 
     def validate_string_not_empty(string)
-      raise CodebreakerGem::Error::EmptyString if string.empty?
+      raise CodebreakerGem::Error::EmptyString if string.strip.empty?
     end
 
     def validate_input_class(object, expected_class)

@@ -8,7 +8,7 @@ RSpec.describe CodebreakerGem::Entities::Difficulty do
   let(:medium_difficulty) { described_class.new(:medium) }
   let(:hell_difficulty) { described_class.new(:hell) }
 
-  context 'success tests' do
+  describe '#success tests' do
     it 'will not raise an error if difficulty is correct' do
       expect { difficulty }.not_to raise_error
     end
