@@ -25,5 +25,9 @@ module CodebreakerGem
     def validate_name_length(name, min_length, max_length)
       raise CodebreakerGem::Error::NameLength if name.length < min_length || name.length > max_length
     end
+
+    def validate_difficulty(difficulty)
+      raise CodebreakerGem::Error::DifficultyHandler unless difficulty.to_sym == CodebreakerGem::Entities::Difficulty.new(difficulty.to_sym)
+    end
   end
 end

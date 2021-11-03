@@ -3,6 +3,7 @@
 module CodebreakerGem
   module Entities
     class Difficulty
+      include Validator
       attr_reader :level, :attempts, :hints
 
       DIFFICULTIES = {
@@ -19,6 +20,11 @@ module CodebreakerGem
         @level = level
         @attempts = DIFFICULTIES[@level][:attempts]
         @hints = DIFFICULTIES[@level][:hints]
+        validate
+      end
+
+      def validate
+        validate_difficulty(level)
       end
     end
   end
