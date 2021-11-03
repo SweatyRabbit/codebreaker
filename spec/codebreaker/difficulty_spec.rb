@@ -9,6 +9,10 @@ RSpec.describe CodebreakerGem::Entities::Difficulty do
   let(:hell_difficulty) { described_class.new(:hell) }
 
   context 'success tests' do
+    it 'will not raise an error if difficulty is correct' do
+      expect { difficulty }.not_to raise_error
+    end
+
     it 'will not raise error if attempts are equal' do
       expect(difficulty.attempts).to eq(CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level][:attempts])
     end

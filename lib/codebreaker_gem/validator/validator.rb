@@ -27,7 +27,7 @@ module CodebreakerGem
     end
 
     def validate_difficulty(difficulty)
-      raise CodebreakerGem::Error::DifficultyHandler unless difficulty.to_sym == CodebreakerGem::Entities::Difficulty.new(difficulty.to_sym)
+      raise CodebreakerGem::Error::DifficultyHandler unless CodebreakerGem::Entities::Difficulty::DIFFICULTIES.include?(difficulty)
     end
   end
 end
