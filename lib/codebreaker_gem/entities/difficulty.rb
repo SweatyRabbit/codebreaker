@@ -17,14 +17,10 @@ module CodebreakerGem
       end
 
       def initialize(level)
-        validate(level)
+        validate_difficulty(level)
         @level = level
         @attempts = DIFFICULTIES[@level][:attempts]
         @hints = DIFFICULTIES[@level][:hints]
-      end
-
-      def validate(level)
-        validate_difficulty(level)
       end
     end
   end

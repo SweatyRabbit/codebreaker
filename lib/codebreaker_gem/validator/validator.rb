@@ -15,7 +15,7 @@ module CodebreakerGem
     end
 
     def validate_input_only_numbers(input)
-      raise CodebreakerGem::Error::OnlyNumbers unless input.scan(/\D/)
+      raise CodebreakerGem::Error::OnlyNumbers unless input !~ /\D/
     end
 
     def validate_range_input(input, range)
