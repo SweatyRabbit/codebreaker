@@ -5,7 +5,7 @@ RSpec.describe CodebreakerGem::Entities::User do
 
   let(:name) { 'Ivan' }
 
-  context '#success test' do
+  context '#success' do
     it 'will not raise error if name is valid' do
       expect { user }.not_to raise_error
     end

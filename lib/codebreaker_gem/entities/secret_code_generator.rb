@@ -2,12 +2,12 @@
 
 module CodebreakerGem
   module Entities
-    class SecretCode
+    class SecretCodeGenerator
       MAX_CODE_LENGTH = 4
       MIN_VALUE = 1
       MAX_VALUE = 6
 
-      def generate_secret_code
+      def call
         Array.new(MAX_CODE_LENGTH) { rand(MIN_VALUE..MAX_VALUE) }
       end
     end

@@ -6,10 +6,6 @@ module CodebreakerGem
       raise CodebreakerGem::Error::MaxStringLength if string.length > max_length || string.length < min_length
     end
 
-    def validate_string_not_empty(string)
-      raise CodebreakerGem::Error::EmptyString if string.strip.empty?
-    end
-
     def validate_input_class(object, expected_class)
       raise CodebreakerGem::Error::WrongClass unless object.is_a?(expected_class)
     end

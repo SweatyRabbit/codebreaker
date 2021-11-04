@@ -10,12 +10,12 @@ module CodebreakerGem
         @level = CodebreakerGem::Entities::Difficulty.new(level.downcase.to_sym)
         @user_attempts = @level.attempts
         @user_hints = @level.hints
-        @secret_code = CodebreakerGem::Entities::SecretCode.new.generate_secret_code
+        @secret_code = CodebreakerGem::Entities::SecretCodeGenerator.new.call
         @hint_code = @secret_code.sample(@user_hints)
       end
 
       def use_attempt(guess)
-        return if lose?
+        return if lose? || win?
 
         @user_attempts -= 1
         @guess = CodebreakerGem::Entities::Guess.new(guess).parse_code

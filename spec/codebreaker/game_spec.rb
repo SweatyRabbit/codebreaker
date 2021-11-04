@@ -7,11 +7,8 @@ RSpec.describe CodebreakerGem::Entities::Game do
   let(:level) { 'easy' }
   let(:attempt) { '1234' }
 
-  describe '#success tests' do
+  describe '#success' do
     before do
-      guess = CodebreakerGem::Entities::Guess.new(attempt).parse_code
-      game.instance_variable_set(:@secret_code, guess)
-      game.instance_variable_set(:@guess, guess)
       game.use_attempt(attempt)
       game.use_hint
     end
@@ -21,16 +18,19 @@ RSpec.describe CodebreakerGem::Entities::Game do
     end
 
     it 'use attempt' do
-      expect(game.user_attempts).to eq(CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level.to_sym][:attempts] - 1)
+      expect(game.user_attempts).to eq(game.level.attempts - 1)
     end
 
-    it 'return true if codes are match' do
-      expect(game.win?).to be_truthy
-    end
-
-    context '#attempts are equal to 0' do
+    context '#check game on win or lose' do
       before do
+        guess = CodebreakerGem::Entities::Guess.new(attempt).parse_code
+        game.instance_variable_set(:@secret_code, guess)
+        game.instance_variable_set(:@guess, guess)
         game.instance_variable_set(:@user_attempts, 0)
+      end
+
+      it 'return true if codes are match' do
+        expect(game.win?).to be_truthy
       end
       it 'return true if attempts are equal to 0' do
         expect(game.lose?).to be_truthy
@@ -38,7 +38,7 @@ RSpec.describe CodebreakerGem::Entities::Game do
     end
 
     it 'use hint' do
-      expect(game.user_hints).to eq(CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level.to_sym][:hints] - 1)
+      expect(game.user_hints).to eq(game.level.hints - 1)
     end
 
     it 'return true if statistic is valid' do
@@ -48,25 +48,25 @@ RSpec.describe CodebreakerGem::Entities::Game do
     end
 
     it 'return true if statistic is saving to db' do
-      expect(game.save_current_statistic).to be_truthy
+      expect { game.save_current_statistic }.not_to raise_error
     end
 
     it 'return true if users stistic is sorted' do
       expect(CodebreakerGem::Entities::Game.users_statistic).to be_truthy
     end
-  end
+    context '#check for not winning or losing game' do
+      before do
+        game.instance_variable_set(:@guess, attempt)
+        game.instance_variable_set(:@user_attempts, 1)
+      end
 
-  describe '#failure tests' do
-    before do
-      game.instance_variable_set(:@guess, attempt)
-      game.instance_variable_set(:@user_attempts, 1)
-    end
-    it 'return false if codes are not match' do
-      expect(game.win?).to be_falsy
-    end
+      it 'return false if codes are not match' do
+        expect(game.win?).to be_falsy
+      end
 
-    it 'return false if attempts are not equal to 0' do
-      expect(game.lose?).to be_falsy
+      it 'return false if attempts are not equal to 0' do
+        expect(game.lose?).to be_falsy
+      end
     end
   end
 end

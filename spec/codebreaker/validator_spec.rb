@@ -4,13 +4,9 @@ RSpec.describe CodebreakerGem::Validator do
   subject(:validation) { class_to_validate.new }
   let(:class_to_validate) { Class.new { include CodebreakerGem::Validator } }
 
-  describe '#check if validations are work' do
+  describe '#filure test' do
     it 'check if name length are not valid' do
       expect { validation.validate_name_length('iv', 3, 20) }.to raise_error(CodebreakerGem::Error::NameLength)
-    end
-
-    it 'check if input is empty' do
-      expect { validation.validate_string_not_empty(' ') }.to raise_error(CodebreakerGem::Error::EmptyString)
     end
 
     it 'check if object is not the same class' do

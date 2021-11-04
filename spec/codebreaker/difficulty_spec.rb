@@ -8,7 +8,7 @@ RSpec.describe CodebreakerGem::Entities::Difficulty do
   let(:medium_difficulty) { described_class.new(:medium) }
   let(:hell_difficulty) { described_class.new(:hell) }
 
-  describe '#success tests' do
+  describe '#success' do
     it 'will not raise an error if difficulty is correct' do
       expect { difficulty }.not_to raise_error
     end
@@ -21,7 +21,7 @@ RSpec.describe CodebreakerGem::Entities::Difficulty do
       expect(difficulty.hints).to eq(CodebreakerGem::Entities::Difficulty::DIFFICULTIES[level][:hints])
     end
 
-    it 'is not equal to another difficulty with less amount attempts and hints' do
+    it 'is bigger than another difficulty with less amount attempts and hints' do
       expect(difficulty <=> easy_difficulty).to eq(-1)
     end
 
@@ -29,7 +29,7 @@ RSpec.describe CodebreakerGem::Entities::Difficulty do
       expect(difficulty <=> medium_difficulty).to eq(0)
     end
 
-    it 'is not equal to another difficulty with greater amount attempts and hints' do
+    it 'is less than another difficulty with greater amount attempts and hints' do
       expect(difficulty <=> hell_difficulty).to eq(1)
     end
   end
