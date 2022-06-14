@@ -15,10 +15,10 @@ module CodebreakerGem
       end
 
       def use_attempt(guess)
+        @guess = CodebreakerGem::Entities::Guess.new(guess).parse_code
         return if lose? || win?
 
         @user_attempts -= 1
-        @guess = CodebreakerGem::Entities::Guess.new(guess).parse_code
         code_match = CodebreakerGem::Entities::UserCode.new(@secret_code, @guess)
         code_match.match
       end
