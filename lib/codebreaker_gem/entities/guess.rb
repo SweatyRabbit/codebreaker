@@ -7,7 +7,9 @@ module CodebreakerGem
       attr_reader :digit
 
       MAX_INPUT = 4
-      INPUT_RANGE = (1..6).freeze
+      MIN_RANGE = 1
+      MAX_RANGE = 6
+      INPUT_RANGE = (MIN_RANGE..MAX_RANGE).freeze
 
       def initialize(digit)
         @digit = digit
