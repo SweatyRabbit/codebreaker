@@ -7,7 +7,7 @@ module CodebreakerGem
 
       attr_reader :name
 
-      STRING_MIN_LEGTH = 3
+      STRING_MIN_LENGTH = 3
       STRING_MAX_LENGTH = 20
 
       def initialize(name)
@@ -19,7 +19,7 @@ module CodebreakerGem
 
       def validate
         validate_input_class(name, String)
-        validate_name_length(name, STRING_MIN_LEGTH, STRING_MAX_LENGTH)
+        validate_name_length(name, STRING_MIN_LENGTH, STRING_MAX_LENGTH)
       end
     end
   end
