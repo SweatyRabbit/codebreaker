@@ -3,7 +3,7 @@
 module CodebreakerGem
   module Error
     class MaxStringLength < StandardError
-      STANDARD_MESSAGE = 'Length must be from 1 to 4'
+      STANDARD_MESSAGE = 'Length must be 4 digits code'
 
       def initialize(message = STANDARD_MESSAGE)
         super(message)
