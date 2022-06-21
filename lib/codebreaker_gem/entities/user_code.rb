@@ -43,7 +43,7 @@ module CodebreakerGem
       end
 
       def wrong_match
-        (CodebreakerGem::Entities::Guess::MAX_INPUT - @user_result.size).times { @user_result << WRONG_NUMBER }
+        (CodebreakerGem::Entities::Guess::MAX_INPUT - @user_result.size).times { @user_result += WRONG_NUMBER }
       end
     end
   end
