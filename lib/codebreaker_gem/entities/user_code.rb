@@ -17,7 +17,7 @@ module CodebreakerGem
         strong_match
         soft_match
         wrong_match
-        @user_result
+        @user_result.dup
       end
 
       private
