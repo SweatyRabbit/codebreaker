@@ -5,6 +5,7 @@ module CodebreakerGem
     class UserCode
       STRONG_NUMBER = '+'
       SOFT_NUMBER = '-'
+      WRONG_NUMBER = 'X'
 
       def initialize(secret_code, guess_code)
         @secret_code = secret_code.clone
@@ -15,6 +16,7 @@ module CodebreakerGem
       def match
         strong_match
         soft_match
+        wrong_match
         @user_result
       end
 
@@ -38,6 +40,10 @@ module CodebreakerGem
             @secret_code.delete(number)
           end
         end
+      end
+
+      def wrong_match
+        (CodebreakerGem::Entities::Guess::MAX_INPUT - @user_result.size).times { @user_result << WRONG_NUMBER }
       end
     end
   end
