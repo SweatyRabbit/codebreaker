@@ -5,15 +5,15 @@ RSpec.describe CodebreakerGem::Entities::UserCode do
 
   describe '#test will pass if all match' do
     test_codes = [{ secret_code: [6, 5, 4, 3], guess_code: [5, 6, 4, 3], answer: '++--' },
-                  { secret_code: [6, 5, 4, 3], guess_code: [6, 4, 1, 1], answer: '+-' },
-                  { secret_code: [6, 5, 4, 3], guess_code: [6, 5, 4, 4], answer: '+++' },
+                  { secret_code: [6, 5, 4, 3], guess_code: [6, 4, 1, 1], answer: '+-XX' },
+                  { secret_code: [6, 5, 4, 3], guess_code: [6, 5, 4, 4], answer: '+++X' },
                   { secret_code: [6, 5, 4, 3], guess_code: [3, 4, 5, 6], answer: '----' },
-                  { secret_code: [6, 5, 4, 3], guess_code: [6, 6, 6, 6], answer: '+' },
-                  { secret_code: [6, 5, 4, 3], guess_code: [2, 6, 6, 6], answer: '-' },
-                  { secret_code: [6, 5, 4, 3], guess_code: [2, 2, 2, 2], answer: '' },
-                  { secret_code: [6, 6, 6, 6], guess_code: [1, 6, 6, 1], answer: '++' },
+                  { secret_code: [6, 5, 4, 3], guess_code: [6, 6, 6, 6], answer: '+XXX' },
+                  { secret_code: [6, 5, 4, 3], guess_code: [2, 6, 6, 6], answer: '-XXX' },
+                  { secret_code: [6, 5, 4, 3], guess_code: [2, 2, 2, 2], answer: 'XXXX' },
+                  { secret_code: [6, 6, 6, 6], guess_code: [1, 6, 6, 1], answer: '++XX' },
                   { secret_code: [1, 2, 3, 4], guess_code: [3, 1, 2, 4], answer: '+---' },
-                  { secret_code: [1, 2, 3, 4], guess_code: [1, 5, 2, 4], answer: '++-' },
+                  { secret_code: [1, 2, 3, 4], guess_code: [1, 5, 2, 4], answer: '++-X' },
                   { secret_code: [1, 2, 3, 4], guess_code: [1, 2, 3, 4], answer: '++++' }]
 
     test_codes.each do |test_code|
